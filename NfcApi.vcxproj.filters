@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\nfc">
+      <UniqueIdentifier>{61766ed0-e029-427c-8bf1-2ae8375debca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nfc\drv">
+      <UniqueIdentifier>{f2443614-8767-4f49-8e23-939b8365cbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nfc\drv\win32">
+      <UniqueIdentifier>{6ad203c3-d10f-4fb0-8d7b-287177c1ca73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nfc\mfc">
+      <UniqueIdentifier>{bda9e0ec-ef75-4fb8-a071-7ee9d683cd43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nfc\mfc\win32">
+      <UniqueIdentifier>{cb01acd7-74aa-483d-915d-4ec8a813d366}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -21,22 +36,37 @@
     <Library Include="Winscard.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ACR122UHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MifareClassicHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WINSCARD.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mfc_win32_CardHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drv_win32_ACR122U.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ACR122UHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MifareClassicHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="nfc\drv\win32\ACR122U.h">
+      <Filter>Header Files\nfc\drv\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mfc\mfc.h">
+      <Filter>Header Files\nfc\mfc</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mfc\win32\CardHandler.h">
+      <Filter>Header Files\nfc\mfc\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mfc\CardHandlerInterface.h">
+      <Filter>Header Files\nfc\mfc</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\drv\win32\WINSCARD.H">
+      <Filter>Header Files\nfc\drv\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\Exception.h">
+      <Filter>Header Files\nfc</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mfc\CardHandler.h">
+      <Filter>Header Files\nfc\mfc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
