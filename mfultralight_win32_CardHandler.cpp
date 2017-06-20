@@ -86,7 +86,7 @@ uint64_t nfc::mful::win32::CardHandler::GetCardUid()
 		throw nfc::Exception("Failed to read value");
 	}
 
-	if (debug_output_) printf("[RX, RESULT = %04x, UID=%02x%02x%02x%02x]\n", card_.GetNfcResult(), response.value[0], response.value[1], response.value[2], response.value[3]);
+	if (debug_output_) printf("[RX, RESULT = %04x, UID=%02x%02x%02x%02x%02x%02x%02x]\n", card_.GetNfcResult(), response.value[0], response.value[1], response.value[2], response.value[3], response.value[4], response.value[5], response.value[6]);
 
 	return (uint64_t)response.value[0] << 48 | (uint64_t)response.value[1] << 40 | (uint64_t)response.value[2] << 32 | (uint64_t)response.value[3] << 24 | (uint64_t)response.value[4] << 16 | (uint64_t)response.value[5] << 8 | (uint64_t)response.value[6] << 0;
 }
