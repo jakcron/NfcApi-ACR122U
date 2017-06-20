@@ -5,8 +5,12 @@ namespace nfc
 {
 namespace mfc
 {
+	// key size
 	static const size_t kKeySize = 6;
 	static const size_t kBlockSize = 0x10;
+	static const size_t kSector64ByteNum = 0x20;
+	static const size_t kSector256ByteNum = 0x8;
+
 
 	struct sBlock0 {
 
@@ -32,7 +36,7 @@ namespace mfc
 
 	struct sSector256Byte
 	{
-		uint8_t data[kBlockSize*0xf];
+		uint8_t data[kBlockSize*15];
 		sSectorTrailer trailer;
 	};
 
@@ -43,17 +47,20 @@ namespace mfc
 
 	struct sCard2K
 	{
-		sSector64Byte sector[0x20];
+		sSector64Byte sector[kSector64ByteNum];
 	};
 
 	struct sCard4K
 	{
-		sSector64Byte sector[0x20];
-		sSector256Byte extended_sector[8];
+		sSector64Byte sector[kSector64ByteNum];
+		sSector256Byte extended_sector[kSector256ByteNum];
 	};
 
-	inline uint32_t sector_size(uint8_t sector) { return (sector < 0x20) ? sizeof(sSector64Byte) : sizeof(sSector256Byte); }
-	inline uint8_t sector_to_block(uint8_t sector) { return sector_size(sector) == 0x40 ? (sector * 4) : (0x20 * 4 + (sector - 0x20) * 16); }
-	inline uint8_t block_to_sector(uint8_t block) { return  (block < 0x80) ? (block / 0x4) : (0x20 + ((block - 0x80) / 0x10)); }
+	static const size_t kSector64ByteBlockNum = sizeof(sSector64Byte) / kBlockSize;
+	static const size_t kSector256ByteBlockNum = sizeof(sSector256Byte) / kBlockSize;
+
+	inline uint32_t sector_size(uint8_t sector) { return (sector < kSector64ByteNum) ? sizeof(sSector64Byte) : sizeof(sSector256Byte); }
+	inline uint8_t sector_to_block(uint8_t sector) { return sector_size(sector) == sizeof(sSector64Byte) ? (sector * kSector64ByteBlockNum) : (kSector64ByteNum * kSector64ByteBlockNum + (sector - kSector64ByteNum) * kSector256ByteBlockNum); }
+	inline uint8_t block_to_sector(uint8_t block) { return  (block < (kSector64ByteNum * kSector64ByteBlockNum)) ? (block / kSector64ByteBlockNum) : (kSector64ByteNum + ((block - (kSector64ByteNum * kSector64ByteBlockNum)) / kSector256ByteBlockNum)); }
 }
 }
