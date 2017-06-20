@@ -28,6 +28,12 @@
     <Filter Include="Header Files\nfc\mfc\win32">
       <UniqueIdentifier>{cb01acd7-74aa-483d-915d-4ec8a813d366}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\nfc\mful">
+      <UniqueIdentifier>{1bbaedb8-7e6f-4601-9eb2-51260cf6d358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nfc\mful\win32">
+      <UniqueIdentifier>{6f970687-5e09-430b-87a8-80834b67b2af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,10 +45,13 @@
     <ClCompile Include="Exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mfc_win32_CardHandler.cpp">
+    <ClCompile Include="mfultralight_win32_CardHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="drv_win32_ACR122U.cpp">
+    <ClCompile Include="mfclassic_win32_CardHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver_win32_ACR122U.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -67,6 +76,18 @@
     </ClInclude>
     <ClInclude Include="nfc\mfc\CardHandler.h">
       <Filter>Header Files\nfc\mfc</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mful\CardHandlerInterface.h">
+      <Filter>Header Files\nfc\mful</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mful\mful.h">
+      <Filter>Header Files\nfc\mful</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mful\CardHandler.h">
+      <Filter>Header Files\nfc\mful</Filter>
+    </ClInclude>
+    <ClInclude Include="nfc\mful\win32\CardHandler.h">
+      <Filter>Header Files\nfc\mful\win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

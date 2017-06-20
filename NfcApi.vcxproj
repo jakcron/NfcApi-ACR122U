@@ -143,9 +143,10 @@
     <Library Include="Winscard.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="drv_win32_ACR122U.cpp" />
-    <ClCompile Include="mfc_win32_CardHandler.cpp" />
+    <ClCompile Include="driver_win32_ACR122U.cpp" />
+    <ClCompile Include="mfclassic_win32_CardHandler.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="mfultralight_win32_CardHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nfc\drv\win32\ACR122U.h" />
@@ -155,6 +156,10 @@
     <ClInclude Include="nfc\mfc\CardHandlerInterface.h" />
     <ClInclude Include="nfc\mfc\mfc.h" />
     <ClInclude Include="nfc\mfc\win32\CardHandler.h" />
+    <ClInclude Include="nfc\mful\CardHandler.h" />
+    <ClInclude Include="nfc\mful\CardHandlerInterface.h" />
+    <ClInclude Include="nfc\mful\mful.h" />
+    <ClInclude Include="nfc\mful\win32\CardHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
