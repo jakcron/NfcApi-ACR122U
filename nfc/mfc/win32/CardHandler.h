@@ -9,7 +9,7 @@ namespace nfc
 	{
 		namespace win32
 		{
-			class CardHandler : public nfc::mfc::CardHandlerInterface
+			class CardHandler : public CardHandlerInterface
 			{
 			public:
 				CardHandler();
@@ -36,14 +36,6 @@ namespace nfc
 				void SetDebugOutput(bool enable_debug);
 
 			private:
-				static const int kNfcResultSize = 2;
-				static const int kTxBuffLen = 0x1000;
-
-				enum AdpuClassType
-				{
-					DEFAULT_CLASS = 0xFF
-				};
-
 				enum AdpuInstructionId
 				{
 					LOAD_AUTH_KEYS = 0x82,

@@ -1,7 +1,7 @@
 #ifdef _MSC_VER
 
-#include "nfc/mfc/win32/CardHandler.h"
-#include "nfc/Exception.h"
+#include <nfc/mfc/win32/CardHandler.h>
+#include <nfc/Exception.h>
 
 nfc::mfc::win32::CardHandler::CardHandler()
 {
@@ -23,7 +23,7 @@ void nfc::mfc::win32::CardHandler::Connect()
 
 	for (size_t i = 0; i < reader_list.size(); i++)
 	{
-		if (reader_list[i].substr(0,10) == "ACS ACR122")
+		if (reader_list[i].substr(0, 10) == "ACS ACR122")
 		{
 			card_.Connect(reader_list[i].c_str(), card_.ACCESS_MODE_SHARED);
 			connected_ = true;
@@ -41,12 +41,12 @@ void nfc::mfc::win32::CardHandler::WaitUntilConnect()
 	{
 		if (reader_list[i].substr(0, 10) == "ACS ACR122")
 		{
-			try_connect:
-			try 
+		try_connect:
+			try
 			{
 				card_.Connect(reader_list[i].c_str(), card_.ACCESS_MODE_SHARED);
 			}
-			catch (const nfc::Exception& e)
+			catch (...)
 			{
 				goto try_connect;
 			}
@@ -77,7 +77,7 @@ uint32_t nfc::mfc::win32::CardHandler::GetCardUid()
 	// Transmit
 	card_.Transmit(GET_DATA, 0x00, 0x00, sizeof(AdpuResponse), nullptr, 0, (uint8_t*)&response, sizeof(AdpuResponse));
 
-	
+
 	// Process result
 	if (card_.GetNfcResult() != NFC_ERROR_OK)
 	{
@@ -126,7 +126,7 @@ void nfc::mfc::win32::CardHandler::AuthenticateWithBlock(uint8_t block, KeyBankI
 	payload.key_type = key_type == KEY_A ? 0x60 : 0x61;
 	payload.key_bank = key_bank;
 
-	if (debug_output_) printf("[TX, CMD=AUTHENTICATE_BLOCK, BLOCK=%d, KEY_BANK=%01d, KEY_TYPE=%s]\n", block, key_bank, key_type == KEY_A? "KEY_A" : "KEY_B");
+	if (debug_output_) printf("[TX, CMD=AUTHENTICATE_BLOCK, BLOCK=%d, KEY_BANK=%01d, KEY_TYPE=%s]\n", block, key_bank, key_type == KEY_A ? "KEY_A" : "KEY_B");
 
 	// Transmit
 	card_.Transmit(AUTHENTICATE_BLOCK, 0x00, 0x00, sizeof(AdpuPayload), (const uint8_t*)&payload, sizeof(AdpuPayload), nullptr, 0);
@@ -152,7 +152,7 @@ void nfc::mfc::win32::CardHandler::ReadBlock(uint8_t block, uint8_t out[kBlockSi
 	{
 		if (debug_output_) printf("[RX, RESULT = %04x]\n", card_.GetNfcResult());
 
-		throw nfc::Exception("Failed to write block");
+		throw nfc::Exception("Failed to read block");
 	}
 
 	if (debug_output_) printf("[RX, RESULT = %04x, DATA=%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x]\n", card_.GetNfcResult(), out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11], out[12], out[13], out[14], out[15]);
